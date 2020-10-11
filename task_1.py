@@ -25,16 +25,8 @@ def get_json_top(filename, char, rating):
 
     # count how many times the word appears in the text
     cap_words = [word.upper() for word in total_lst]
-    word_counts = Counter(cap_words)
-    # create a list
-    result = []
-    for key, value in word_counts.items():
-        result.append([key, value])
-    # Sorted by value
-    result = sorted(result, key=lambda x: x[1], reverse=True)
-    # Create top 10
-    top_words = result[ : rating + 1]
+    word_counts = Counter(cap_words).most_common(rating)
 
-    return top_words
+    return word_counts
 
 pprint(get_json_top("newsafr1.json" , 6, 10))
