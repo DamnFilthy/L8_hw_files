@@ -8,4 +8,3 @@ try:
             result.append(str1[i])
 except IndexError:
     result.append(str1[i])
-print(result)

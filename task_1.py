@@ -12,7 +12,7 @@ def get_json_top(filename, char, rating):
         titles = file["rss"]["channel"]["items"]
         # One big string
         for title in titles:
-            all_words = all_words + ' ' + title["title"]
+            all_words = all_words + ' ' + title["description"]
 
     # List of words
     lst = all_words.split()

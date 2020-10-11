@@ -12,7 +12,7 @@ def get_xml_top(filename, char, rating):
     items = root.findall("channel/item")
     all_words = ''
     for item in items:
-        all_words = all_words + ' ' + item.find("title").text
+        all_words = all_words + ' ' + item.find("description").text
 
     # List of words
     lst = all_words.split()
