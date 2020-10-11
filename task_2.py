@@ -4,7 +4,7 @@ from collections import Counter
 import xml.etree.ElementTree as ET
 
 # function return top 10 words
-def get_xml_top(filename):
+def get_xml_top(filename, char, rating):
     parser = ET.XMLParser(encoding = "utf-8")
     tree = ET.parse(filename, parser)
     root = tree.getroot()
@@ -19,21 +19,21 @@ def get_xml_top(filename):
 
     # List where word bigger than 6 char
     total_lst = []
-    for i in lst:
-        if len(i) >= 6:
-            total_lst.append(i)
+    for word in lst:
+        if len(word) >= char:
+            total_lst.append(word)
 
     # count how many times the word appears in the text
     cap_words = [word.upper() for word in total_lst]
     word_counts = Counter(cap_words)
     # create a list
     result = []
-    for k, v in word_counts.items():
-        result.append([k, v])
+    for key, value in word_counts.items():
+        result.append([key, value])
     # Sorted by value
     result = sorted(result, key=lambda x: x[1], reverse=True)
     # Create top 10
-    top_10 = result[:11]
-    return top_10
+    top = result[ : rating + 1]
+    return top
 
-pprint(get_xml_top("newsafr2.xml"))
+pprint(get_xml_top("newsafr2.xml", 6, 10))
